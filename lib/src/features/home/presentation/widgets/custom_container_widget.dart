@@ -18,19 +18,18 @@ class CustomContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 32.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: const Color(0xFF001026).withOpacity(0.5),
           borderRadius: BorderRadius.circular(16),
         ),
         padding: const EdgeInsets.all(8),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
-          child: Column(
-            children: [
-              Row(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -44,42 +43,49 @@ class CustomContainerWidget extends StatelessWidget {
                     )
                   else
                     temperatureData.first.calendarIcon ??
-                        const Icon(Icons.help),
+                        const Icon(
+                          Icons.help,
+                          color: Colors.white,
+                        ),
                 ],
               ),
-              const SizedBox(height: 8),
-              // Usando ListView.builder para exibir os dados de temperatura
-              SizedBox(
-                height: forecastType == ForecastType.today
-                    ? 100
-                    : 220, // Defina a altura do ListView
-                child: ListView.builder(
-                  scrollDirection: forecastType == ForecastType.today
-                      ? Axis.horizontal // Muda para horizontal se for 'today'
-                      : Axis.vertical,
-                  itemCount: temperatureData.length,
-                  itemBuilder: (context, index) {
-                    final data = temperatureData[index];
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: forecastType == ForecastType.today ? 100 : 220,
+              child: ListView.builder(
+                scrollDirection: forecastType == ForecastType.today
+                    ? Axis.horizontal
+                    : Axis.vertical,
+                itemCount: temperatureData.length,
+                itemBuilder: (context, index) {
+                  final data = temperatureData[index];
 
-                    if (forecastType == ForecastType.today) {
-                      return _TempTodayHour(
+                  if (forecastType == ForecastType.today) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14.0, vertical: 4),
+                      child: _TempTodayHour(
                         graus: data.graus,
                         icon: data.iconWheater,
                         hour: data.hour,
-                      );
-                    } else {
-                      return _TempNextHourWidget(
+                      ),
+                    );
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                      child: _TempNextHourWidget(
                         day: data.day,
                         max: data.max,
                         min: data.min,
                         icon: data.iconWheater,
-                      );
-                    }
-                  },
-                ),
+                      ),
+                    );
+                  }
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -100,26 +106,26 @@ class _TempTodayHour extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        right: 24,
+    return Container(
+      width: 64,
+      height: 100,
+      decoration: BoxDecoration(
+        color: const Color(0xFF2566A3),
+        borderRadius: BorderRadius.circular(10),
       ),
-      child: Container(
-        width: 64,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(children: [
-            Text(graus),
-            const SizedBox(height: 8),
-            icon,
-            const SizedBox(height: 8),
-            Text(hour),
-          ]),
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            graus,
+            style: const TextStyle(fontSize: 16, color: Colors.white),
+          ),
+          icon, // Ícone no meio
+          Text(
+            hour,
+            style: const TextStyle(color: Colors.white),
+          ),
+        ],
       ),
     );
   }
@@ -148,13 +154,22 @@ class _TempNextHourWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(day),
+              Text(
+                day,
+                style: const TextStyle(color: Colors.white),
+              ),
               icon,
               Row(
                 children: [
-                  Text(max),
+                  Text(
+                    max,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                   const SizedBox(width: 8),
-                  Text(min),
+                  Text(
+                    min,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             ],

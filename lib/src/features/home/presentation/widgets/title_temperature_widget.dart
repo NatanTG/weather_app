@@ -14,22 +14,21 @@ class TitleTemperatureWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SunCloudAngledRainWidget(
+        const SunCloudAngledRainWidget(
           assetName: 'assets/images/sun_smile.png',
         ),
         Text(
           graus,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 56,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
-        Text(
+        const Text(
           'Precipitations',
           style: TextStyle(
             fontSize: 16,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         Row(
@@ -37,17 +36,17 @@ class TitleTemperatureWidget extends StatelessWidget {
           children: [
             Text(
               'Max.: ${max}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
             const SizedBox(width: 16),
             Text(
               'Min.: ${min}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ),
           ],

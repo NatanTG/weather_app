@@ -19,10 +19,10 @@ class IntroStatsShipWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: Color(0xFF001026).withOpacity(0.5),
           borderRadius: BorderRadius.circular(16),
         ),
         padding: const EdgeInsets.all(8),
@@ -32,19 +32,20 @@ class IntroStatsShipWidgets extends StatelessWidget {
             Row(
               children: [
                 waterDropIcon,
-                Text(waterDropText),
+                Text(waterDropText,
+                    style: const TextStyle(color: Colors.white)),
               ],
             ),
             Row(
               children: [
                 humidityIcon,
-                Text(humidityText),
+                Text(humidityText, style: const TextStyle(color: Colors.white)),
               ],
             ),
             Row(
               children: [
                 windIcon,
-                Text(windText),
+                Text(windText, style: const TextStyle(color: Colors.white)),
               ],
             ),
           ],
